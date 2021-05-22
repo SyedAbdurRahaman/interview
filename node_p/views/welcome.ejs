@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- model -->
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+
+    <title><%=docTitle %></title>
+    <style>
+      body {
+          color: #404E67;
+          background: #F5F7FA;
+          font-family: 'Open Sans', sans-serif;
+      }
+      .table-wrapper {
+          width: 700px;
+          margin: 30px auto;
+          background: #fff;
+          padding: 20px;	
+          box-shadow: 0 1px 1px rgba(0,0,0,.05);
+      }
+      .table-title {
+          padding-bottom: 10px;
+          margin: 0 0 10px;
+      }
+      .table-title h2 {
+          margin: 6px 0 0;
+          font-size: 22px;
+      }
+      .table-title .add-new {
+          float: right;
+          height: 30px;
+          font-weight: bold;
+          font-size: 12px;
+          text-shadow: none;
+          min-width: 100px;
+          border-radius: 50px;
+          line-height: 13px;
+      }
+      .table-title .add-new i {
+          margin-right: 4px;
+      }
+      table.table {
+          table-layout: fixed;
+      }
+      table.table tr th, table.table tr td {
+          border-color: #e9e9e9;
+      }
+      table.table th i {
+          font-size: 13px;
+          margin: 0 5px;
+          cursor: pointer;
+      }
+      table.table th:last-child {
+          width: 100px;
+      }
+      table.table td a {
+          cursor: pointer;
+          display: inline-block;
+          margin: 0 5px;
+          min-width: 24px;
+      }    
+      table.table td a.add {
+          color: #27C46B;
+      }
+      table.table td a.edit {
+          color: #FFC107;
+      }
+      table.table td a.delete {
+          color: #E34724;
+      }
+      table.table td i {
+          font-size: 19px;
+      }
+      table.table td a.add i {
+          font-size: 24px;
+          margin-right: -1px;
+          position: relative;
+          top: 3px;
+      }    
+      table.table .form-control {
+          height: 32px;
+          line-height: 32px;
+          box-shadow: none;
+          border-radius: 2px;
+      }
+      table.table .form-control.error {
+          border-color: #f50000;
+      }
+      table.table td .add {
+          display: none;
+      }
+/* toggle form */
+
+            .mydiv{
+              height: 140px;
+                width: 300px;
+                margin: 0 auto;
+
+            }
+           
+            input[name="updateName"] ,input[name="UpdateEmail"] ,input[name="p"] {
+                width: 100%;
+                padding: 15px;
+                margin-bottom: 15px;
+                border: 1px solid #dddddd;
+                box-sizing: border-box;
+            }
+            #btn{
+                width: 100%;
+                padding: 15px;
+                color: white;
+                font-weight: bold;
+                background-color: lightsalmon;
+                border: 0;
+                cursor: pointer;
+            }
+            
+
+            
+        
+      </style>
+      
+</head>
+<body>
+  <div class="container-lg">
+      <div class="table-responsive">
+          <div class="table-wrapper">
+              <div class="table-title">
+                  <div class="row">
+                      <div class="col-sm-8"><h2>User <b>Details</b></h2></div>
+                      <div class="col-sm-4">
+                        <a href="/add" type="button" class="btn btn-info add-new" ><i class="fa fa-plus"></i> Add New</a>
+
+                          <!-- <button type="button" class="btn btn-info add-new"  onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-plus"></i> Add New</button> -->
+                      </div>
+                  </div>
+              </div>
+              <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                     
+                      <th scope="col">User Name</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Password</th>
+                      <th >Actions</th>
+                    </tr>
+                  </thead>
+                  <% for(var item of items) { %>
+                    <tbody>
+                      <tr>
+                        
+                        <td scope="row"><%= item.username %></td>
+                        <td scope="row"><%= item.email %></td>
+                        <td scope="row"><%= item.password %></td>
+                          <td>
+                              <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons" >&#xE03B;</i></a>
+                              <a href="edit/<%= item.id %>"class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                              <!-- <a href="delete/<%= item.id %>"  class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a> -->
+                              <a onclick="confirmar('<%= item.email %>','<%= item.id %>')"  class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+
+                          </td>
+                      </tr>
+                      
+                           
+                  </tbody>
+                  <% } %>
+              </table>
+          </div>
+      </div>
+  </div>  
+
+  <script>
+    
+  function confirmar(email,id) {
+    Swal.fire({
+        title: 'Do you want to delete the USER with Email : '+email+'?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Delete'
+      }).then((result) => {
+        if (result.isConfirmed) {   
+          window.location = '/delete/'+id;                              
+        }
+    });
+  }
+  </script>
+  
+  <!-- toggle -->
+  <div class="w3-container">
+  
+    <!-- <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Open Modal</button> -->
+  
+    <div id="id01" class="w3-modal">
+      <div class="w3-modal-content">
+        <header class="w3-container w3-teal"> 
+          <span onclick="document.getElementById('id01').style.display='none'" 
+          class="w3-button w3-display-topright">&times;</span>
+          <h2>Update</h2>
+        </header>
+        <form action="/update" method="POST"></form>
+
+        <div class="mydiv">
+        				
+
+          <input type="text"  name="updateName" placeholder="Name">
+          <input  type="email" name="UpdateEmail" placeholder="Email" disabled >
+               
+        </div>
+        <footer class="mydiv" >
+          <input type="submit" id="btn" value="UPDATE"  >
+        </footer>
+      </form>
+      </div>
+    
+    </div>
+  </div>
+  </body>
+  
+</html>
+<!-- <body>
+    <h2>hiiiii</h2>
+    <p>vchgdvhjf</p>
+            
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">User Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Password</th>
+                </tr>
+              </thead>
+              <% for(var item of items) { %>
+                <tbody>
+                  <tr>
+                    <th scope="row">1 </th>
+                    <td><%= item.username %></td>
+                    <td><%= item.email %></td>
+                    <td><%= item.password %></td>
+                  </tr>
+                
+                  
+                </tbody>
+              <% } %>
+            </table>
+            
+        
+      
+</body> -->
