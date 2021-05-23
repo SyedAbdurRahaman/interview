@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <style>
+            div{
+                width: 300px;
+                margin: 0 auto;
+
+            }
+            h2{
+                text-align: center;
+
+            }
+            input[name="u"] ,input[name="g"] ,input[name="p"] {
+                width: 100%;
+                padding: 15px;
+                margin-bottom: 15px;
+                border: 1px solid #dddddd;
+                box-sizing: border-box;
+            }
+            #btn{
+                width: 100%;
+                padding: 15px;
+                color: white;
+                font-weight: bold;
+                background-color: lightsalmon;
+                border: 0;
+                cursor: pointer;
+            }
+            
+
+            
+        </style>
+        
+    </head>
+    <body>
+    <div class="login-form">
+        <h2>LOGIN</h2>
+    <form action="/auth" method="POST" >
+         
+    
+    <input type="text" name="u" placeholder="User Name" required><br>
+    
+    <!-- <input type="email" name="g" placeholder="Gmail"><br> -->
+    
+    <input type="password" name="p" placeholder="Password" required><br><br>
+    <input type="submit" id="btn" value="LOGIN"  >
+
+</form>
+<p>Didn't have an Account? <a type="submit" href="signupp"> SignUp Now!</a></p>
+
+</div>
+
+
+</body>
+</html>

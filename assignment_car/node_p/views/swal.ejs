@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</head>
+<body>
+       <% if(UE==true){  %>
+    <script>
+    
+
+        
+    window.onload = function () {
+
+        confirmar('<%= present.email %>');
+}
+        function confirmar(email) {
+          Swal.fire({
+              title: 'user already Exist with Email : '+email+" "+   'Please login',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#d33',
+              cancelButtonColor: '#6c757d',
+              confirmButtonText: 'LOGIN'
+            }).then((result) => {
+              if (result.isConfirmed) {   
+                window.location = '/';                              
+              }
+              else{
+                  window.location='/signupp';
+              }
+          });
+        }
+
+
+        </script>
+        <% }%>
+
+        <!-- //-------------------------------------------------------------------------------------------- -->
+
+        
+       <% if(notMatch==true){  %>
+        <script>
+        
+    
+            
+        window.onload = function () {
+    
+            confirmar();
+    }
+            function confirmar() {
+              Swal.fire({
+                  title:'password not match',
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#d33',
+                  cancelButtonColor: '#6c757d',
+                  confirmButtonText: 'Re-Enter'
+                }).then((result) => {
+                  if (result.isConfirmed) {   
+                    window.location = '/signupp';                              
+                  }
+                  else{
+                      window.location='/signupp';
+                  }
+              });
+            }
+    
+    
+            </script>
+            <% }%>
+</body>
+</html>

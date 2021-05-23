@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title><%= docTitle %></title>
+</head>
+<body>
+    <div class="container-lg">
+        <div class="table-responsive">
+         
+          
+            
+        </div>
+            <div class="table-wrapper" id="id_list_block">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-8"><h2><b>Car Details</b></h2></div>
+                        <div class="col-sm-4">
+                          <a  href="/"type="button" class="btn btn-info add-new"  ><i class="fa fa-back"></i> Back</a>
+                         
+  
+                            <!-- <button type="button" class="btn btn-info add-new"  onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-plus"></i> Add New</button> -->
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                       
+                        <th scope="col">Manufacturer</th>
+                        <th scope="col">Name of the car</th>
+                        <th scope="col">type</th>
+                        <th scope="col">color</th>
+                        
+                      </tr>
+                    </thead>
+                    <% for(var item of items) { %>
+                      <tbody>
+                        <tr>
+                          
+                          <td scope="row"><%= item.man %></td>
+                          <td scope="row"><%= item.noc %></td>
+                          <td scope="row"><%= item.type %></td>
+                          <td scope="row"><%= item.color %></td>
+                            
+                        </tr>
+                        
+                             
+                    </tbody>
+                    <% } %>
+                </table>
+            </div>
+</body>
+</html>
